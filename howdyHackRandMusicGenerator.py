@@ -5,8 +5,8 @@ The purpose of this program is to take general user input
 about the type of piece they're looking to produce, and to
 randomly generate music based on these inputs.
 
-Don't expect the music to be too good most of the time, but
-there may be that diamond in the rough that actually makes
+Don't expect the music to be too good (or rhythmic) most of 
+the time, but there may be that diamond in the rough that actually makes
 some noise for you.
 
 At the very least, the sound of pressing run without getting
