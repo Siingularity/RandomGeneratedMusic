@@ -48,7 +48,7 @@ def scoreSetup():
         except:
             ValueError
             print("Tempo must be a number.")
-    print("----------------")
+    print("-----------------------")
     
     # converts the tempo and note value to a numerical value
     # for reference, 60bpm = 60,000ms
@@ -67,6 +67,7 @@ def scoreSetup():
             break
         else:
             print("That is not an allowed Key")
+        print("-----------------------")
 
     while True:    
         userOctave = int(input("On what octave? (1 - 7): "))
@@ -79,6 +80,7 @@ def scoreSetup():
             break
         else:
             print("That is not an allowed Octave")
+        print("-----------------------")
 
     while True:
         userMajMin = raw_input("Is the key MAJOR or MINOR?: ").upper()
@@ -106,8 +108,10 @@ def scoreSetup():
                 break
         else:
             print("Try again.")
+        print("-----------------------")
 
     print(key + str(octave), majMin)
+    print("-----------------------")
 
     # converting the majMin value to numerical transposition values for the code to use later
     # this establishes the key in terms of numerical whole and half steps
@@ -131,6 +135,7 @@ def scoreSetup():
         else:
             print("That is not an accepted duration.")
     print("Song duration is", songDur, "min.")
+    print("-----------------------")
     songDur *= tempo
     songDur = int(songDur) # converts songDur to an int to make sure it repeats for an int value of times
                             # float values will cause an error, since you can't repeat '2.3333' times
@@ -153,7 +158,7 @@ def scoreSetup():
                 elif isinstance(note, str): 
                     self.note = note.strip().lower()
                     self.index = Note.NOTES.index(self.note) # finds the index for the note given
-            
+
             # sets up how transposition works
             def transpose(self, halfsteps):
                 octave_delta, note = divmod(self.index + halfsteps, 12) # max amount of allowable halfsteps is 12
@@ -231,10 +236,13 @@ def scoreSetup():
             # shifts pitch upward to create harmonics
             # freq = pitch, length = note duration
             # the 44100 value sets the tempo
+        rhythm = [2, 1, .5] # rhythm can be half, quarter, or eighth notes
+        randRhythm = random.choice(rhythm)
+
         def harmonics1(freq, length):
-            a = sine(freq * 1.00, length, tempoNumVal)
-            b = sine(freq * 2.00, length, tempoNumVal) * 0.5
-            c = sine(freq * 4.00, length, tempoNumVal) * 0.125
+            a = sine(freq * 1.00, length * randRhythm, tempoNumVal)
+            b = sine(freq * 2.00, length * randRhythm, tempoNumVal) * 0.5
+            c = sine(freq * 4.00, length * randRhythm, tempoNumVal) * 0.125
             return (a + b + c) * 0.2
 
         def harmonics2(freq, length):
@@ -268,8 +276,9 @@ def scoreSetup():
         
         # repeats the code long enough to match the user song duration
         for i in range(int(songDur - 2)):
+            randRhythm = random.choice(rhythm)
              # picks a random chord valued from 0 - 20 and adds it to the chunks array
-             chunks.append(chord(random.randint(10, 26), scale))
+            chunks.append(chord(random.randint(10, 26), scale))
         chunks.append(chord(1, scale))
  
 
