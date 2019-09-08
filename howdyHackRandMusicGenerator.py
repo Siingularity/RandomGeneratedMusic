@@ -70,15 +70,17 @@ def scoreSetup():
         print("-----------------------")
 
     while True:    
-        userOctave = int(input("On what octave? (1 - 7): "))
-        allowOctave = {1, 2, 3, 4, 5, 6, 7}
-        if userOctave == 0: # sets the octave location to random
-            octave = random.randint(1, 7)
-            break
-        elif userOctave in allowOctave:
-            octave = userOctave
-            break
-        else:
+        try:
+            userOctave = int(input("On what octave? (1 - 7): "))
+            allowOctave = {1, 2, 3, 4, 5, 6, 7}
+            if userOctave == 0: # sets the octave location to random
+                octave = random.randint(1, 7)
+                break
+            if userOctave in allowOctave:
+                octave = userOctave
+                break
+        except:
+            ValueError
             print("That is not an allowed Octave")
         print("-----------------------")
 
