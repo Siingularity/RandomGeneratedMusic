@@ -75,7 +75,7 @@ def scoreSetup():
         if userOctave == 0: # sets the octave location to random
             octave = random.randint(1, 7)
             break
-        if userOctave in allowOctave:
+        elif userOctave in allowOctave:
             octave = userOctave
             break
         else:
